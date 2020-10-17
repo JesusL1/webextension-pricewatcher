@@ -9,7 +9,7 @@
         "48": "icons/money_piggy-48.png"
       },
     
-    "permissions": ["activeTab","tabs", "storage"],
+    "permissions": ["activeTab","tabs", "storage", "<all_urls>"],
   
     "content_scripts": [
       {

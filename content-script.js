@@ -16,7 +16,8 @@ browser.runtime.onMessage.addListener(
             console.log("supported")
             var scrape_function = websites[window.location.hostname] // get the function of the current website from dict
             price = this[scrape_function]() // call the function
-            sendResponse({farewell: {"name":document.title, "price": price, "url":window.location.href}})
+            sendResponse({productInfo: {"name":document.title, "price": price, "url":window.location.href}})
+            browser.runtime.sendMessage({greeting: "greeting from content-script"})
         }
         else {
             console.log("NOT SUPPORTED")
@@ -25,3 +26,5 @@ browser.runtime.onMessage.addListener(
         // if (request.greeting == "hello i'm from pw.js")
         //     sendResponse({farewell: window.location.href});
 });
+
+
