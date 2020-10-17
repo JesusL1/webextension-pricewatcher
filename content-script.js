@@ -1,22 +1,27 @@
 console.log("CONTENT SCRIPT STARTED")
 
-var websites = ["www.microcenter.com", "93brand"]
-
-if (websites.includes(window.location.hostname)) {
-    console.log("THIS IS A VALID WEBSITE")
-}
-else{
-    console.log("NOT A VALID WEBSITE")
-}
-
-
+var websites = {"www.microcenter.com":"Scrape_Microcenter", "www.93brand.com":"my 93brand function"}
 
 function Scrape_Microcenter() {
-    let price = parseFloat(document.getElementById('pricing').innerText.substring(1))
-    console.log(price)
+    console.log("Called the scrape microcenter function: ")
+    let productPrice = parseFloat(document.getElementById('pricing').innerText.substring(1))
+    return productPrice
+    //console.log(productPrice) 
 }
 
-// // Scrape_Microcenter()
+browser.runtime.onMessage.addListener(
+    function(request, sender, sendResponse) {
 
-// console.log(window.location.href)
-// console.log(window.location.hostname)
+        if (window.location.hostname in websites) {
+            console.log("supported")
+            var scrape_function = websites[window.location.hostname] // get the function of the current website from dict
+            price = this[scrape_function]() // call the function
+            sendResponse({farewell: {"name":document.title, "price": price, "url":window.location.href}})
+        }
+        else {
+            console.log("NOT SUPPORTED")
+        }
+
+        // if (request.greeting == "hello i'm from pw.js")
+        //     sendResponse({farewell: window.location.href});
+});
