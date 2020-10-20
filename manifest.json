@@ -9,13 +9,17 @@
         "48": "icons/money_piggy-48.png"
       },
     
-    "permissions": ["activeTab","tabs", "storage", "<all_urls>"],
+    "permissions": ["alarms","activeTab","tabs", "storage", "<all_urls>"],
   
     "content_scripts": [
       {
         "matches": ["<all_urls>"],
         "js": ["content-script.js"]
       }
+    ],
+
+    "web_accessible_resources": [
+      "popup/watchlist.html"
     ],
   
     "background": {
