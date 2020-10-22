@@ -10,11 +10,8 @@ browser.tabs.query({active: true, currentWindow: true}, function(tabs) {
 
 var form = document.getElementById("form")
 form.onsubmit = function() {
-    var productName = document.getElementById("productName").value 
-    var productPrice = document.getElementById("productPrice").value
-    var productURL = document.getElementById("productURL").value
-    localStorage.setItem(productURL, JSON.stringify([productName, productPrice]))
-    var arr = JSON.parse(localStorage.getItem(productURL))
-    console.log(arr)
-    //alert("The form was submitted: " + productName)
+    var name = document.getElementById("productName").value 
+    var price = document.getElementById("productPrice").value
+    var url = document.getElementById("productURL").value
+    localStorage.setItem(url, JSON.stringify({name, price}))
 }
