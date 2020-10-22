@@ -17,10 +17,6 @@
         "js": ["content-script.js"]
       }
     ],
-
-    "web_accessible_resources": [
-      "popup/watchlist.html"
-    ],
   
     "background": {
       "scripts": ["background-script.js"]

@@ -1,11 +1,48 @@
-//localStorage.setItem('myCat', 'Tom');
+var websites = {"www.microcenter.com":"Scrape_Microcenter", "www.93brand.com":"my 93brand function"}
 
-function handleMessage(request, sender, sendResponse) {
-    console.log("Message from content script: " + request.greeting);
-    sendResponse({response: "Response from background script"});
+async function Scrape_Microcenter(url) {
+    console.log("Called the scrape microcenter function: ")
+    var doc = await loadDoc(url)
+    let productPrice = parseFloat(doc.getElementById('pricing').innerText.substring(1))
+    console.log(productPrice)
+    return productPrice
+}
+
+function loadDoc(url) {
+  return fetch(url)
+    .then(response => {
+      if (response.ok) { 
+        return response.text();
+      }
+      else {
+        throw Error(`Request rejected with status ${response.status}`);
+      }
+    })
+    .then(function (html) {
+      var parser = new DOMParser();
+      var doc = parser.parseFromString(html, 'text/html')
+      return doc
+    })
+    .catch(console.error)
+}
+
+
+browser.runtime.onMessage.addListener(async function(request, sender, sendResponse) {
+  let taburl = new URL(request.greeting)
+
+  if (taburl.hostname in websites) {
+    console.log("supported")
+    var scrape_function = websites[taburl.hostname] // get the function of the current website from dict
+    price = await this[scrape_function](taburl.href) // call the function
+    //sendResponse({productInfo: {"price": price, "url":taburl.hostname}})
   }
-  
-browser.runtime.onMessage.addListener(handleMessage)
+  else {
+      console.log("NOT SUPPORTED")
+  } 
+  return ({productInfo: {"price": price, "url":taburl.hostname}})      
+});
+
+
 
 // const periodInMinutes = 0.1;
 
@@ -13,24 +50,8 @@ browser.runtime.onMessage.addListener(handleMessage)
 //   periodInMinutes
 // });
 
-browser.alarms.onAlarm.addListener((alarm) => {
-  console.log("alarm is going off")
-})
-
-function loadXMLDoc() {
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-      if (this.readyState == 4 && this.status == 200) {
-        parser = new DOMParser()
-        doc = parser.parseFromString(this.responseText, "text/html")
-        console.log(doc)
-          //console.log(this.responseText)
-        // document.getElementById("demo").innerHTML = this.responseText;
-      }
-    };
-    xhttp.open("GET", "https://www.microcenter.com/product/608318/amd-ryzen-7-3700x-matisse-36ghz-8-core-am4-boxed-processor-with-wraith-prism-cooler", true);
-    xhttp.send();
-}
-
-loadXMLDoc()
-
+// browser.alarms.onAlarm.addListener((alarm) => {
+//   console.log("alarm is going off")
+//   //portFromCS.postMessage({greeting: "CheckPrices"});
+  
+// })
