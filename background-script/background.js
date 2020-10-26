@@ -3,7 +3,7 @@ const websites = {"www.microcenter.com":"Scrape_Microcenter", "www.93brand.com":
 async function Scrape_Microcenter(url) {
     console.log("Called the scrape microcenter function: ")
     var doc = await loadDoc(url)
-    let productPrice = parseFloat(doc.getElementById('pricing').innerText.substring(1))
+    let productPrice = doc.getElementById('pricing').innerText.substring(1)
     console.log("Microcenter: ", productPrice)
     return productPrice
 }
@@ -34,6 +34,7 @@ browser.runtime.onMessage.addListener(async function(request, sender, sendRespon
     console.log("supported")
     var scrape_function = websites[taburl.hostname] // get the function of the current website from dict
     price = await this[scrape_function](taburl.href) // call the function
+    price = parseFloat(price.replace(/[^\d\.\-]/g, "")) // remove commas from prices
     //sendResponse({productInfo: {"price": price, "url":taburl.hostname}})
   }
   else {
@@ -42,6 +43,8 @@ browser.runtime.onMessage.addListener(async function(request, sender, sendRespon
   return ({productInfo: {"price": price, "url":taburl.href}})      
 });
 
+
+Scrape_Microcenter('https://www.microcenter.com/product/628685/asus-geforce-rtx-3090-strix-overclocked-triple-fan-24gb-gddr6x-pcie-40-graphics-card')
 
 //localStorage.clear()
 
@@ -75,7 +78,8 @@ browser.alarms.onAlarm.addListener((alarm) => {
             'to_email': 'test@email.com',
             'product_title' : product_title,
             'product_price' : current_price,
-            'product_url' : product_url.href
+            'product_url' : product_url.href,
+            'watch_price' : watch_price
         }
       };
       
