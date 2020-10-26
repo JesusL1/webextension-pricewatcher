@@ -3,7 +3,6 @@
     "name": "PriceWatcher",
     "version": "1.0",
     "description": "Get notified when a product is discounted.",
-    "homepage_url": "https://github.com/JesusL1/WebExtension_PriceWatcher",
     "icons": {
         "32": "icons/money_piggy-32.png",
         "48": "icons/money_piggy-48.png"
@@ -11,12 +10,6 @@
     
     "permissions": ["alarms","activeTab","tabs","storage","<all_urls>"],
   
-    "content_scripts": [
-      {
-        "matches": ["<all_urls>"],
-        "js": ["content-script.js"]
-      }
-    ],
   
     "background": {
       "scripts": ["background-script/config.js","background-script/jquery-3.5.1.min.js",

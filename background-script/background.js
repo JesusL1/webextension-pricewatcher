@@ -1,10 +1,10 @@
-var websites = {"www.microcenter.com":"Scrape_Microcenter", "www.93brand.com":"my 93brand function"}
+const websites = {"www.microcenter.com":"Scrape_Microcenter", "www.93brand.com":"my 93brand function"}
 
 async function Scrape_Microcenter(url) {
     console.log("Called the scrape microcenter function: ")
     var doc = await loadDoc(url)
     let productPrice = parseFloat(doc.getElementById('pricing').innerText.substring(1))
-    console.log(productPrice)
+    console.log("Microcenter: ", productPrice)
     return productPrice
 }
 
@@ -64,7 +64,7 @@ browser.alarms.onAlarm.addListener((alarm) => {
     let scrape_function = websites[product_url.hostname] // get the function of the current website from dict
     current_price = await this[scrape_function](product_url.href) // call the function
 
-    if (current_price < watch_price) {
+    if (current_price <= watch_price) {
       console.log("There's a discount!")
       // send out an email
       var data = {
