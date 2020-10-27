@@ -13,5 +13,5 @@ form.onsubmit = function() {
     var name = document.getElementById("productName").value 
     var price = document.getElementById("productPrice").value
     var url = document.getElementById("productURL").value
-    localStorage.setItem(url, JSON.stringify({name, price}))
+    browser.storage.sync.set({[url]: {name,price}})
 }

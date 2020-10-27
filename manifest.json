@@ -20,7 +20,13 @@
         "default_icon": "icons/money_piggy-48.png",
         "default_title": "PriceWatcher",
         "default_popup": "popup/pricewatcher.html"
-      }
+      },
+
+      "browser_specific_settings": {
+        "gecko": {
+            "id": "price-examples@your-domain.com"
+        }
+    }
   
   }
 

@@ -1,8 +1,13 @@
 var node = document.createElement("li")
-    
-    Object.keys(localStorage).forEach(function(key) {
-        var textnode = document.createTextNode(localStorage.getItem(key))
-        node.appendChild(textnode)
-        document.getElementById("listofproducts").appendChild(node)
-        console.log(localStorage.getItem(key))
-    });
+
+browser.storage.sync.get().then((watchlist => {
+    for (var key in watchlist) { 
+      var product = watchlist[key]
+      var textnode = document.createTextNode(product.name)
+      node.appendChild(textnode)
+      document.getElementById("listofproducts").appendChild(node)
+      textnode = document.createTextNode(product.price)
+      node.appendChild(textnode)
+      document.getElementById("listofproducts").appendChild(node)
+    }
+  }))

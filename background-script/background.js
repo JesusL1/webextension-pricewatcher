@@ -44,55 +44,57 @@ browser.runtime.onMessage.addListener(async function(request, sender, sendRespon
 });
 
 
-Scrape_Microcenter('https://www.microcenter.com/product/628685/asus-geforce-rtx-3090-strix-overclocked-triple-fan-24gb-gddr6x-pcie-40-graphics-card')
-
-//localStorage.clear()
+//browser.storage.sync.clear()
 
 
-// const periodInMinutes = 0.3;
+const periodInMinutes = 0.3;
 
-// browser.alarms.create({
-//   periodInMinutes
-// });
+browser.alarms.create({
+  periodInMinutes
+});
 
 
 browser.alarms.onAlarm.addListener((alarm) => {
   console.log("Alarm has started...")
-  Object.keys(localStorage).forEach(async function(key) {
-    console.log(localStorage.getItem(key))
-    let product_url = new URL(key)
-    let product = JSON.parse(localStorage.getItem(key))
-    let product_title = product.name
-    let watch_price = product.price 
-    let scrape_function = websites[product_url.hostname] // get the function of the current website from dict
-    current_price = await this[scrape_function](product_url.href) // call the function
+  browser.storage.sync.get().then((async watchlist => {
+    for (var key in watchlist) { 
+      var product = watchlist[key]
+      let product_url = new URL(key)
+      let product_title = product.name
+      let watch_price = product.price 
+      let scrape_function = websites[product_url.hostname] // get the function of the current website from dict
+      product_price = await this[scrape_function](product_url.href) // call the function
 
-    if (current_price <= watch_price) {
-      console.log("There's a discount!")
-      // send out an email
-      var data = {
-        service_id: config.service_id,
-        template_id: config.template_id,
-        user_id: config.user_id,
-        template_params: {
-            'to_email': 'test@email.com',
-            'product_title' : product_title,
-            'product_price' : current_price,
-            'product_url' : product_url.href,
-            'watch_price' : watch_price
-        }
-      };
-      
-      $.ajax('https://api.emailjs.com/api/v1.0/email/send', {
-        type: 'POST',
-        data: JSON.stringify(data),
-        contentType: 'application/json'
-      }).done(function() {
-        console.log('Your mail is sent!');
-      }).fail(function(error) {
-        console.log('Oops... ' + JSON.stringify(error));
-      });
+      if (product_price <= watch_price) {
+        console.log("There's a discount!")
+        SendEmail(product_title, product_price, product_url, watch_price)
+      }
     }
-
-  });
+  }))
 })
+
+
+function SendEmail(product_title, product_price, product_url, watch_price) {
+  var data = {
+    service_id: config.service_id,
+    template_id: config.template_id,
+    user_id: config.user_id,
+    template_params: {
+        'to_email': config.email,
+        'product_title' : product_title,
+        'product_price' : product_price,
+        'product_url' : product_url.href,
+        'watch_price' : watch_price
+    }
+  };
+
+  $.ajax('https://api.emailjs.com/api/v1.0/email/send', {
+    type: 'POST',
+    data: JSON.stringify(data),
+    contentType: 'application/json'
+  }).done(function() {
+    console.log('Your mail is sent!');
+  }).fail(function(error) {
+    console.log('Oops... ' + JSON.stringify(error));
+  });
+}
