@@ -1,7 +1,6 @@
 const websites = {"www.microcenter.com":"Scrape_Microcenter", "www.93brand.com":"my 93brand function"}
 
 async function Scrape_Microcenter(url) {
-    console.log("Called the scrape microcenter function: ")
     var doc = await loadDoc(url)
     let productPrice = doc.getElementById('pricing').innerText.substring(1)
     console.log("Microcenter: ", productPrice)
@@ -46,19 +45,18 @@ browser.runtime.onMessage.addListener(async function(request, sender, sendRespon
 
 //browser.storage.sync.clear()
 
+// const periodInMinutes = 0.3;
 
-const periodInMinutes = 0.3;
-
-browser.alarms.create({
-  periodInMinutes
-});
+// browser.alarms.create({
+//   periodInMinutes
+// });
 
 
 browser.alarms.onAlarm.addListener((alarm) => {
   console.log("Alarm has started...")
   browser.storage.sync.get().then((async watchlist => {
     for (var key in watchlist) { 
-      var product = watchlist[key]
+      let product = watchlist[key]
       let product_url = new URL(key)
       let product_title = product.name
       let watch_price = product.price 
@@ -80,7 +78,7 @@ function SendEmail(product_title, product_price, product_url, watch_price) {
     template_id: config.template_id,
     user_id: config.user_id,
     template_params: {
-        'to_email': config.email,
+        'to_email': localStorage.get('userEmail'),
         'product_title' : product_title,
         'product_price' : product_price,
         'product_url' : product_url.href,

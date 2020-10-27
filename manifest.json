@@ -7,10 +7,8 @@
         "32": "icons/money_piggy-32.png",
         "48": "icons/money_piggy-48.png"
       },
-    
     "permissions": ["alarms","activeTab","tabs","storage","<all_urls>"],
-  
-  
+
     "background": {
       "scripts": ["background-script/config.js","background-script/jquery-3.5.1.min.js",
         "background-script/background.js" ]
@@ -29,5 +27,3 @@
     }
   
   }
-
-
