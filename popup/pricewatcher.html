@@ -3,22 +3,49 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/popup/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/popup/css/style.css">
     </head>
 
 <body>
-    <h3 id="user"></h3>
-    <form id="form" action="/popup/watchlist.html">
+
+  <ul class="nav nav-tabs" id="myTab">
+    <li class="nav-item">
+      <a class="nav-link active" id="home-tab" data-toggle="tab" href="/popup/pricewatcher.html">Home</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="profile-tab" data-toggle="tab" href="/popup/watchlist.html">Profile</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact">Contact</a>
+    </li>
+  </ul>
+      
+      <!-- <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade  " id="home" role="tabpanel" aria-labelledby="home-tab">...</div>
+        <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">fadafafdafeafafd</div>
+        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">contact section</div>
+      </div> -->
+
+
+
+
+
+
+    <p id="user"></p>
+    <!-- <form id="form" action="/popup/watchlist.html">
         product name<input id="productName" type="text" name="name" required>
         product price<input id="productPrice" type="number" step=".01" name="price" required>
         product URL<input id="productURL" type="text" name="url" required>
         <input type="submit" value="Submit">
-    </form>
+    </form> -->
 
-    <form id="emailForm" action="/popup/email-setup.html">
+    <!-- <form id="emailForm" action="/popup/email-setup.html">
         <input type="submit" value="Change Email">
-    </form>
-    
+    </form> -->
+    <script src="/popup/bootstrap.min.js"></script>
     <script src="pricewatcher.js"></script>
+    
 </body>
 
 </html>
