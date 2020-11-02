@@ -17,7 +17,7 @@
     "browser_action": {
         "default_icon": "icons/money_piggy-48.png",
         "default_title": "PriceWatcher",
-        "default_popup": "popup/pricewatcher.html"
+        "default_popup": "popup/add-product.html"
       },
 
       "browser_specific_settings": {

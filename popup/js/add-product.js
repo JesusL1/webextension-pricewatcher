@@ -6,7 +6,6 @@ if (userEmail === null) {
 else {
     browser.tabs.query({active: true, currentWindow: true}, function(tabs) { 
         browser.runtime.sendMessage({greeting: tabs[0].url}, function(response) {
-            console.log("pricewatcher.js response: ", response)
             document.getElementById("productName").value  = tabs[0].title
             document.getElementById("productPrice").value = response.productInfo["price"]
             document.getElementById("productURL").value = response.productInfo["url"]
