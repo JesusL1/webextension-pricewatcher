@@ -45,6 +45,7 @@ browser.runtime.onMessage.addListener(async function(request, sender, sendRespon
 
 //browser.storage.sync.clear()
 
+
 // const periodInMinutes = 0.3;
 
 // browser.alarms.create({

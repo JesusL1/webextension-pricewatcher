@@ -1,7 +1,6 @@
 const userEmail = localStorage.getItem('userEmail')
-document.getElementById("user").innerText = userEmail
 if (userEmail === null) {
-    window.location.href="/popup/email-setup.html"
+    window.location.href="setup-email.html"
 }
 else {
     browser.tabs.query({active: true, currentWindow: true}, function(tabs) { 

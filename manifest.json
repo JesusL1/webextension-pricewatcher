@@ -10,8 +10,8 @@
     "permissions": ["alarms","activeTab","tabs","storage","<all_urls>"],
 
     "background": {
-      "scripts": ["background-script/config.js","background-script/jquery-3.5.1.min.js",
-        "background-script/background.js" ]
+      "scripts": ["js/background-script/config.js","js/background-script/jquery-3.5.1.min.js",
+        "js/background-script/background.js" ]
     },
   
     "browser_action": {
