@@ -1,5 +1,5 @@
 body {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     width:350px;
     height:500px;
     font-size:16px;
@@ -17,6 +17,9 @@ svg {
     font-size:1.5rem;
     
 }
+
+
+
 /* makes non-active icons gray */
 a:not(.active) {
     fill:gray
@@ -32,6 +35,8 @@ a:not(.active) {
 }
 
 .header p {
+    text-transform: uppercase;
+    letter-spacing: 1px;
     padding-top:0.7rem;
 }
 
@@ -39,7 +44,7 @@ a:not(.active) {
   position:absolute;
   top:0;
   right:2rem;
-  padding-top:0.55rem;
+  padding-top:0.51rem;
 }
 
 .bottomnav a {
@@ -51,11 +56,33 @@ a:not(.active) {
     overflow:hidden;
 }
 
+.container {
+    padding-top:1rem;
+}
+
 .add-product {
     word-wrap: break-word;
-    padding-left:1rem;
     font-size:13px;
 }
 .add-product label {
     display:block;
+}
+
+.current_email.form-group {
+    text-align: center;
+    padding-bottom:100px;
+}
+
+#emailForm input[type=email] {
+    width:300px;
+}
+
+#current_email {
+    display:block;
+}
+
+#emailForm label {
+    /* line-height: 13px; */
+    letter-spacing: 1px;
+    /* color: #868a9f; */
 }

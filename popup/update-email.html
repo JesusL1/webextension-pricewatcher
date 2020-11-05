@@ -6,18 +6,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="css/style.css">
+  
 </head>
 
 <body>
-  <!-- <a class="nav-link active" href="setup-email.html">
-    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person-fill" xmlns="http://www.w3.org/2000/svg">
-        <path fill-rule="evenodd" d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-      </svg>
-  </a> -->
 
   <div class="header">
     <p>My Profile</p>
-    <a href="change-email.html">
+    <a href="update-email.html">
       <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person-fill" fill="black"
         xmlns="http://www.w3.org/2000/svg">
         <path fill-rule="evenodd" d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
@@ -25,15 +21,24 @@
     </a>
   </div>
 
-  <p id="current_email">afda</p>
+  <div class="container">
+    <form id="emailForm" action="update-email.html">
+      <div class="current_email form-group">
+        <label class="text-muted">Email Address</label>
+        <label id="current_email"></label>
+      </div>
+      <div class="form-group">
+        <small id="emailHelp" class="form-text text-muted">Enter a new email address.</small>
+        <input id="Email" type="email" required>
+      </div>
+      <button type="submit" class="btn btn-outline-primary">Update Email</button>
+      
+    </form>
+  </div>  
 
-  <form id="form" action="add-product.html">
-    <label>Email: </label>
-    <input type="email" id="Email" required>
-    <button type="submit">Save</button>
-  </form>
 
-  <div class="bottomnav ">
+
+  <div class="bottomnav">
     <nav class="nav">
       <a class="nav-link" href="add-product.html"> <svg width="1em" height="1em" viewBox="0 0 16 16"
           class="bi bi-check-circle" xmlns="http://www.w3.org/2000/svg">
@@ -58,7 +63,7 @@
 
 
   
-
+  <script src="js/background-script/jquery-3.5.1.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="js/setup-email.js"></script>
 
