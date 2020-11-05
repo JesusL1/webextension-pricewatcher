@@ -4,8 +4,10 @@
     "version": "1.0",
     "description": "Get notified when a product is discounted.",
     "icons": {
-        "32": "icons/money_piggy-32.png",
-        "48": "icons/money_piggy-48.png"
+        "16": "popup/icons/piggy-bank-16.png",
+        "24": "popup/icons/piggy-bank-24.png",
+        "32": "popup/icons/piggy-bank-32.png",
+        "64": "popup/icons/piggy-bank-64.png"
       },
     "permissions": ["alarms","activeTab","tabs","storage","<all_urls>"],
 
@@ -15,7 +17,7 @@
     },
   
     "browser_action": {
-        "default_icon": "icons/money_piggy-48.png",
+        "default_icon": "popup/icons/piggy-bank-64.png",
         "default_title": "PriceWatcher",
         "default_popup": "popup/add-product.html"
       },
