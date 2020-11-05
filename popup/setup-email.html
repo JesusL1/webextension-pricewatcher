@@ -4,16 +4,20 @@
 <head>
   <meta charset="utf-8">
   <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-  <p id="currentEmail"></p>
 
-  <form id="form" action="add-product.html">
-    <label>Email: </label>
-    <input type="email" id="Email" required>
-    <button type="submit">Save</button>
-  </form>
+  <div class="container">
+    <form id="emailForm" action="update-email.html">
+      <div class="form-group">
+        <small id="emailHelp" class="form-text text-muted">Enter the email address where you want to receive notifications.</small>
+        <input id="Email" type="email" required>
+      </div>
+      <button type="submit" class="btn btn-outline-primary">Save Email</button>    
+    </form>
+  </div>  
 
   <script src="js/setup-email.js"></script>
 </body>

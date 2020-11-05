@@ -1,5 +1,4 @@
 const userEmail = localStorage.getItem('userEmail')
-console.log("My EMAIL: ", userEmail)
 if (userEmail !== null) 
 {
     document.getElementById("current_email").innerText = userEmail
