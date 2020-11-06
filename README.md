@@ -1,1 +1,1 @@
-# WebExtension_PriceWatcher
+# PriceWatcher

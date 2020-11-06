@@ -12,8 +12,8 @@
     "permissions": ["alarms","activeTab","tabs","storage","<all_urls>"],
 
     "background": {
-      "scripts": ["js/background-script/config.js","js/background-script/jquery-3.5.1.min.js",
-        "js/background-script/background.js" ]
+      "scripts": ["/popup/js/background-script/config.js","/popup/js/background-script/jquery-3.5.1.min.js",
+        "/popup/js/background-script/background.js" ]
     },
   
     "browser_action": {

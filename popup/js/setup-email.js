@@ -9,3 +9,9 @@ form.onsubmit = function() {
     var email = document.getElementById("Email").value 
     localStorage.setItem('userEmail', email)   
 }
+
+// var gettingItem = browser.storage.sync.getBytesInUse();
+// gettingItem.then((res) => {
+//     console.log(res);
+// });
+
