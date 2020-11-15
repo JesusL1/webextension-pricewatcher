@@ -1,88 +1,94 @@
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    width:350px;
-    height:500px;
-    font-size:16px;
+  font-family: Arial, Helvetica, sans-serif;
+  width: 350px;
+  height: 500px;
+  font-size: 16px;
 }
 
 .nav {
-    position: absolute;
-    bottom:0;
-    border-top: 1px solid #dee2e6;
-    width:100%;
+  position: absolute;
+  bottom: 0;
+  border-top: 1px solid #dee2e6;
+  width: 100%;
 }
 
- /* icon size */
+.active {
+  fill: rgb(251, 169, 228);
+}
+
+/* icon size */
 svg {
-    font-size:1.5rem;
-    
+  font-size: 1.5rem;
 }
-
-
 
 /* makes non-active icons gray */
 a:not(.active) {
-    fill:gray
+  fill: gray;
+}
+
+/* non-active icons hover */
+.nav-link:not(.active):hover {
+  fill: rgb(22, 22, 22);
 }
 
 .header {
-    position:relative;
-    width:100%;
-    height:50px;
-    text-align: center;
-    font-weight: bold;
-    border-bottom: 1px solid #dee2e6;
+  position: relative;
+  width: 100%;
+  height: 50px;
+  text-align: center;
+  font-weight: bold;
+  border-bottom: 1px solid #dee2e6;
 }
 
 .header p {
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    padding-top:0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding-top: 0.7rem;
 }
 
 .header a {
-  position:absolute;
-  top:0;
-  right:2rem;
-  padding-top:0.51rem;
+  position: absolute;
+  top: 0;
+  right: 2rem;
+  padding-top: 0.51rem;
 }
 
 .bottomnav a {
-    margin-left:45px;
+  margin-left: 45px;
 }
 
 #listofproducts {
-    position:relative;
-    overflow:hidden;
+  position: relative;
+  overflow: hidden;
 }
 
 .container {
-    padding-top:1rem;
+  padding-top: 1rem;
 }
 
 .add-product {
-    word-wrap: break-word;
-    font-size:13px;
+  word-wrap: break-word;
+  font-size: 13px;
 }
 .add-product label {
-    display:block;
+  display: block;
 }
 
 .current_email.form-group {
-    text-align: center;
-    padding-bottom:100px;
+  text-align: center;
+  padding-bottom: 100px;
 }
 
-#emailForm input[type=email] {
-    width:300px;
+#emailForm input[type="email"] {
+  width: 300px;
 }
 
 #current_email {
-    display:block;
+  display: block;
 }
 
 #emailForm label {
-    /* line-height: 13px; */
-    letter-spacing: 1px;
-    /* color: #868a9f; */
+  /* line-height: 13px; */
+  letter-spacing: 1px;
+  /* color: #868a9f; */
 }
