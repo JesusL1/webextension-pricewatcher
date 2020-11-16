@@ -1,20 +1,29 @@
-const websites = {"www.microcenter.com":"Scrape_Microcenter", "www.93brand.com":"Scrape_93Brand"}
+const websites = {"www.microcenter.com":"Scrape_Microcenter", "93brand.com":"Scrape_93Brand"}
 var productDict = {"productPrice": null, "productImage": null}
 
 async function Scrape_Microcenter(url) {
     var doc = await loadDoc(url)
     let productPrice = doc.getElementById('pricing').innerText.substring(1)
     productDict["productPrice"] = productPrice
-    productImage = doc.getElementsByClassName("productImageZoom")[0]
+    productImage = doc.getElementsByClassName("productImageZoom")[0].src
     productDict["productImage"] = productImage
     return productDict
+}
+
+async function Scrape_93Brand(url) {
+  var doc = await loadDoc(url)
+  let productPrice = doc.getElementById("ProductPrice-product-template").innerText.substring(1)
+  productDict["productPrice"] = productPrice
+  productImage = doc.getElementsByTagName("img")[2].src.replace("moz-extension", "https") // need to replace moz-extension with https in url
+  productDict["productImage"] = productImage
+  return productDict
 }
 
 browser.runtime.onMessage.addListener(async function(request, sender, sendResponse) {
   let taburl = new URL(request.greeting)
 
   if (taburl.hostname in websites) {
-    console.log("supported")
+    console.log("website supported.")
     var scrape_function = websites[taburl.hostname] // get the function of the current website from dict
     productDict = await this[scrape_function](taburl.href) // call the function
     price = productDict["productPrice"]
@@ -24,12 +33,11 @@ browser.runtime.onMessage.addListener(async function(request, sender, sendRespon
   else {
       return ("invalid")
   } 
-  return ({productInfo: {"price": price, "image": image.src, "url":taburl.href}})      
+  return ({productInfo: {"price": price, "image": image, "url":taburl.href}})      
 });
 
 
 //browser.storage.sync.clear()
-
 
 // const periodInMinutes = 0.3;
 
@@ -57,7 +65,6 @@ browser.alarms.onAlarm.addListener((alarm) => {
   }))
 })
 
-
 function SendEmail(product_title, product_price, product_url, watch_price) {
   var data = {
     service_id: config.service_id,
@@ -71,7 +78,6 @@ function SendEmail(product_title, product_price, product_url, watch_price) {
         'watch_price' : watch_price
     }
   };
-
   $.ajax('https://api.emailjs.com/api/v1.0/email/send', {
     type: 'POST',
     data: JSON.stringify(data),
