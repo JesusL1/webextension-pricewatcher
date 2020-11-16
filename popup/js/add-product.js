@@ -12,7 +12,7 @@ else {
                 document.getElementsByClassName("container")[0].style.display='none'
             }
             else {
-                document.getElementById("productName").value  = tabs[0].title
+                document.getElementById("productName").value  = tabs[0].title.substring(0,50) // gets only first 50 char of product name
                 document.getElementById("productPrice").value = response.productInfo["price"] - 1
                 document.getElementById("productImage").src = response.productInfo["image"]
                 document.getElementById("productURL").value = response.productInfo["url"]

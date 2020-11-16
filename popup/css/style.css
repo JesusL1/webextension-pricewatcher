@@ -6,14 +6,25 @@ body {
 }
 
 #loading {
-  width:8.5rem;
-  height:8.5rem;
-  margin-top:5rem;
+  width: 8.5rem;
+  height: 8.5rem;
+  margin-top: 5rem;
 }
 
 #invalidMessage {
-  display:none;
+  display: none;
   text-align: center;
+}
+
+#productName {
+  border: 3px solid #ccc;
+  padding: 5px;
+  resize: none;
+}
+
+#productImage {
+  border: 0.1px solid rgb(0, 0, 0);
+  border-radius: 10px;
 }
 
 .nav {
