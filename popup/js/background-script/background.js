@@ -1,30 +1,14 @@
-const websites = {"www.microcenter.com":"Scrape_Microcenter", "www.93brand.com":"my 93brand function"}
+const websites = {"www.microcenter.com":"Scrape_Microcenter", "www.93brand.com":"Scrape_93Brand"}
+var productDict = {"productPrice": null, "productImage": null}
 
 async function Scrape_Microcenter(url) {
     var doc = await loadDoc(url)
     let productPrice = doc.getElementById('pricing').innerText.substring(1)
-    console.log("Microcenter: ", productPrice)
-    return productPrice
+    productDict["productPrice"] = productPrice
+    productImage = doc.getElementsByClassName("productImageZoom")[0]
+    productDict["productImage"] = productImage
+    return productDict
 }
-
-function loadDoc(url) {
-  return fetch(url)
-    .then(response => {
-      if (response.ok) { 
-        return response.text();
-      }
-      else {
-        throw Error(`Request rejected with status ${response.status}`);
-      }
-    })
-    .then(function (html) {
-      var parser = new DOMParser();
-      var doc = parser.parseFromString(html, 'text/html')
-      return doc
-    })
-    .catch(console.error)
-}
-
 
 browser.runtime.onMessage.addListener(async function(request, sender, sendResponse) {
   let taburl = new URL(request.greeting)
@@ -32,14 +16,15 @@ browser.runtime.onMessage.addListener(async function(request, sender, sendRespon
   if (taburl.hostname in websites) {
     console.log("supported")
     var scrape_function = websites[taburl.hostname] // get the function of the current website from dict
-    price = await this[scrape_function](taburl.href) // call the function
+    productDict = await this[scrape_function](taburl.href) // call the function
+    price = productDict["productPrice"]
     price = parseFloat(price.replace(/[^\d\.\-]/g, "")) // remove commas from prices
-    //sendResponse({productInfo: {"price": price, "url":taburl.hostname}})
+    image = productDict["productImage"]
   }
   else {
-      console.log("NOT SUPPORTED")
+      return ("invalid")
   } 
-  return ({productInfo: {"price": price, "url":taburl.href}})      
+  return ({productInfo: {"price": price, "image": image.src, "url":taburl.href}})      
 });
 
 
@@ -96,4 +81,22 @@ function SendEmail(product_title, product_price, product_url, watch_price) {
   }).fail(function(error) {
     console.log('Oops... ' + JSON.stringify(error));
   });
+}
+
+function loadDoc(url) {
+  return fetch(url)
+    .then(response => {
+      if (response.ok) { 
+        return response.text();
+      }
+      else {
+        throw Error(`Request rejected with status ${response.status}`);
+      }
+    })
+    .then(function (html) {
+      var parser = new DOMParser();
+      var doc = parser.parseFromString(html, 'text/html')
+      return doc
+    })
+    .catch(console.error)
 }

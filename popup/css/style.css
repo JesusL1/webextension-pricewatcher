@@ -5,6 +5,11 @@ body {
   font-size: 16px;
 }
 
+#invalidMessage {
+  display:none;
+  text-align: center;
+}
+
 .nav {
   position: absolute;
   bottom: 0;
