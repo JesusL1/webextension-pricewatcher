@@ -5,6 +5,12 @@ body {
   font-size: 16px;
 }
 
+#loading {
+  width:8.5rem;
+  height:8.5rem;
+  margin-top:5rem;
+}
+
 #invalidMessage {
   display:none;
   text-align: center;

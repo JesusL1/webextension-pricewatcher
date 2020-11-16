@@ -5,18 +5,19 @@ if (userEmail === null) {
 }
 else {
     browser.tabs.query({active: true, currentWindow: true}, function(tabs) { 
-        browser.runtime.sendMessage({greeting: tabs[0].url}, function(response) {
-            
+        browser.runtime.sendMessage({greeting: tabs[0].url}, function(response) {  
             if (response==="invalid") {
+                document.getElementById("loading").style.display='none' 
                 document.getElementById("invalidMessage").style.display='block'
                 document.getElementsByClassName("container")[0].style.display='none'
             }
             else {
-                document.getElementById("invalidMessage").style.display='none'
                 document.getElementById("productName").value  = tabs[0].title
-                document.getElementById("productPrice").value = response.productInfo["price"]
+                document.getElementById("productPrice").value = response.productInfo["price"] - 1
                 document.getElementById("productImage").src = response.productInfo["image"]
                 document.getElementById("productURL").value = response.productInfo["url"]
+                document.getElementById("loading").style.display='none' 
+                document.getElementsByClassName("container")[0].style.display='block'
             }   
         })
     });
