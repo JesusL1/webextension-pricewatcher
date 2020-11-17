@@ -1,7 +1,7 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
   width: 375px;
-  height: 450px;
+  height: 420px;
   font-size: 16px;
 }
 
@@ -24,15 +24,36 @@ body {
   width: 12rem;
   height: 6rem;
   /* padding: 5px; */
+  border: none;
   resize: none;
+}
+
+#productName:hover {
+  border: 1px solid #000000
 }
 
 #productImage {
   position: absolute;
   top: 65px;
   border: 2px solid #ccc;
-  /* border-radius: 10px; */
-  
+}
+
+label[for=productPrice] {
+  font-size:16px;
+  position:absolute;
+  bottom: 140px;
+}
+
+#productPrice {
+  font-size:16px;
+  width:100px;
+  position:absolute;
+  bottom: 120px;
+}
+
+#addProductButton {
+  position:absolute;
+  bottom:4rem;
 }
 
 .nav {

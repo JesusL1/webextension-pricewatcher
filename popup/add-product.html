@@ -36,23 +36,20 @@
 
   <div class="container" style=display:none>
     <form class="add-product" id="form" action="watchlist.html">
-      
       <div>
-        <!-- <label for="productName">Product Name:</label> -->
-        <!-- <input id="productName" maxlength="50" class="form-control-sm" type="text" name="name" required> -->
-        <textarea id="productName" maxlength="50" rows="2" cols="25" required></textarea>
+        <textarea id="productName" maxlength="50" rows="2" cols="25" title="Click to edit" required></textarea>
       </div>
       <div>
         <img id="productImage" width="150rem" height="150rem">
       </div>
       <div class="form-group">
-        <label for="productPrice">Notify me when price is:</label>
-        <input id="productPrice" type="number" step=".01" name="price" placeholder="$0.00" required>
+        <label for="productPrice">Notify if price is:</label>
+        <input id="productPrice" type="number" step=".01" name="price" placeholder="0.00" required>
       </div>
       <div class="form-group">
         <input id="productURL" type="text" name="url" hidden required>
       </div>
-      <button type="submit" class="btn btn-sm btn-outline-primary">Add Product</button>
+      <button id="addProductButton" type="submit" class="btn btn-outline-primary">Add Product</button>
     </form>
   </div>
   
