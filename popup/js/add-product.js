@@ -13,9 +13,11 @@ else {
             }
             else {
                 document.getElementById("productName").value  = tabs[0].title.substring(0,50) // gets only first 50 char of product name
-                document.getElementById("productPrice").value = response.productInfo["price"] - 1
+                document.getElementById("productPrice").value = response.productInfo["price"]
+                document.getElementById("notifyPrice").value = response.productInfo["price"] - 1
                 document.getElementById("productImage").src = response.productInfo["image"]
                 document.getElementById("productURL").value = response.productInfo["url"]
+                document.getElementById("productDomain").value = response.productInfo["domain"]
                 document.getElementById("loading").style.display='none' 
                 document.getElementsByClassName("container")[0].style.display='block'
             }   
@@ -24,10 +26,12 @@ else {
     
     form.onsubmit = function() {
         var name = document.getElementById("productName").value 
-        var price = document.getElementById("productPrice").value
+        var currentPrice = document.getElementById("productPrice").value
+        var notifyPrice = document.getElementById("notifyPrice").value
         var image = document.getElementById("productImage").src
         var url = document.getElementById("productURL").value
-        browser.storage.sync.set({[url]: {name,price,image}})
+        var domain = document.getElementById("productDomain").value
+        browser.storage.sync.set({[url]: {name,currentPrice,notifyPrice,image,domain}})
         form.reset()
         document.getElementById("productImage").style.display='none'
     }

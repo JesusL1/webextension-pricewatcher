@@ -33,7 +33,7 @@ browser.runtime.onMessage.addListener(async function(request, sender, sendRespon
   else {
       return ("invalid")
   } 
-  return ({productInfo: {"price": price, "image": image, "url":taburl.href}})      
+  return ({productInfo: {"price": price, "image": image, "url":taburl.href, "domain":taburl.host}})      
 });
 
 
@@ -53,19 +53,18 @@ browser.alarms.onAlarm.addListener((alarm) => {
       let product = watchlist[key]
       let product_url = new URL(key)
       let product_title = product.name
-      let watch_price = product.price 
       let scrape_function = websites[product_url.hostname] // get the function of the current website from dict
       product_price = await this[scrape_function](product_url.href) // call the function
 
-      if (product_price <= watch_price) {
+      if (product_price <= product.notifyPrice) {
         console.log("There's a discount!")
-        SendEmail(product_title, product_price, product_url, watch_price)
+        SendEmail(product_title, product_price, product_url, product_price)
       }
     }
   }))
 })
 
-function SendEmail(product_title, product_price, product_url, watch_price) {
+function SendEmail(product_title, product_price, product_url, sale_price) {
   var data = {
     service_id: config.service_id,
     template_id: config.template_id,
@@ -75,7 +74,7 @@ function SendEmail(product_title, product_price, product_url, watch_price) {
         'product_title' : product_title,
         'product_price' : product_price,
         'product_url' : product_url.href,
-        'watch_price' : watch_price
+        'sale_price' : sale_price
     }
   };
   $.ajax('https://api.emailjs.com/api/v1.0/email/send', {
