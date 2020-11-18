@@ -14,7 +14,6 @@ else {
             else {
                 document.getElementById("productName").value  = tabs[0].title.substring(0,50) // gets only first 50 char of product name
                 document.getElementById("productPrice").value = response.productInfo["price"]
-                document.getElementById("notifyPrice").value = response.productInfo["price"] - 1
                 document.getElementById("productImage").src = response.productInfo["image"]
                 document.getElementById("productURL").value = response.productInfo["url"]
                 document.getElementById("productDomain").value = response.productInfo["domain"]
