@@ -128,7 +128,13 @@ label[for=notifyPrice] {
   font-size:14px;
   position: absolute;
   left:120px;
-  top:85px;
+  top:80px;
+}
+
+.pRemove {
+  position: absolute;
+  right:30px;
+  top: 60px;
 }
 
 .nav {

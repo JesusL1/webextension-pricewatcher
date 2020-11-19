@@ -32,12 +32,28 @@ browser.storage.sync.get().then((watchlist => {
       pImage.classList.add("pImage", "hvr-grow")
       pImage.src = product.image
 
+      var removeForm = document.createElement("form")
+      removeForm.method = "POST"
+      removeForm.addEventListener('submit', RemoveProduct)
+
+      var removeInput = document.createElement("input")
+      removeInput.classList.add("pRemove", "btn", "btn-outline-danger", "btn-sm")
+      removeInput.type="submit"
+      removeInput.value="Remove"
+      removeForm.id = key
+
       watchProduct.append(pName)
       watchProduct.append(pNotify)
       watchProduct.append(pWebsite)
       watchProduct.append(pImage)
+      removeForm.appendChild(removeInput)
+      watchProduct.append(removeForm)
       link.appendChild(watchProduct)
       watchlistDiv.append(link)
     }
   }))
 
+  function RemoveProduct() {
+    console.log('Removing:', this.id)
+    browser.storage.sync.remove(this.id)
+  }
