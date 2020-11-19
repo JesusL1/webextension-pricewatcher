@@ -20,7 +20,7 @@ body {
   font-size:1.1rem;
   color: #4f6b8f;
   position: absolute;
-  left: 175px;
+  left: 230px;
   width: 12rem;
   height: 6rem;
   /* padding: 5px; */
@@ -41,14 +41,14 @@ body {
 label[for=notifyPrice] {
   font-size:16px;
   position:absolute;
-  bottom: 140px;
+  bottom: 160px;
 }
 
 #notifyPrice {
   font-size:16px;
   width:100px;
   position:absolute;
-  bottom: 120px;
+  bottom: 135px;
 }
 
 #addProductButton {

@@ -11,7 +11,6 @@ async function Scrape_93Brand(url) {
 }
 
 async function Scrape_Bananarepublic(url) {
-  console.log("bananna")
   var doc = await loadDoc(url)
   let productPrice = doc.getElementsByClassName("pdp-pricing__selected")[0].innerText.substring(1)
   console.log(productPrice)
