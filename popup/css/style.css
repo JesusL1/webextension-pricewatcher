@@ -5,138 +5,6 @@ body {
   font-size: 16px;
 }
 
-#loading {
-  width: 8.5rem;
-  height: 8.5rem;
-  margin-top: 5rem;
-}
-
-#invalidMessage {
-  display: none;
-  text-align: center;
-}
-
-#productName {
-  font-size:1.1rem;
-  color: #4f6b8f;
-  position: absolute;
-  left: 230px;
-  width: 12rem;
-  height: 6rem;
-  /* padding: 5px; */
-  border: none;
-  resize: none;
-}
-
-#productName:hover {
-  border: 1px solid #000000
-}
-
-#productImage {
-  position: absolute;
-  top: 65px;
-  border: 2px solid #ccc;
-}
-
-label[for=notifyPrice] {
-  font-size:16px;
-  position:absolute;
-  bottom: 160px;
-}
-
-#notifyPrice {
-  font-size:16px;
-  width:100px;
-  position:absolute;
-  bottom: 135px;
-}
-
-#addProductButton {
-  position:absolute;
-  bottom:4rem;
-}
-
-#watchProductContainer {
-  position:relative;
-  width:100%;
-  height:375px;
-  overflow: auto;
-  /* border:1px solid red; */
-}
-
-.watchProduct {
-  position: relative;
-  width:100%;
-  height:120px;
-  overflow:hidden;
-  /* border:1px solid blue; */
-}
-
-.watchProduct:hover {
-  /* background-color:#f8dfe1!important; */
-  font-weight:bold;
-}
-
-.watchProduct:hover .pImage {
-  transform: scale(1.1);
-}
-
-.pURL:nth-child(even) .watchProduct {
-  background-color:#efeeee;
-}
-
-.pName {
-  font-size:14px;
-  color: #4f6b8f;
-  position: absolute;
-  left:120px;
-}
-
-.pDomain {
-  font-size:12px;
-  font-style: italic;
-  position: absolute;
-  left:120px;
-  top:75px;
-}
-
-.pURL {
-  color:inherit!important;
-}
-
-.pImage {
-  position: absolute;
-  left:10px;
-  top:10px;
-  width:100px;
-  height:100px;
-  /* border: 2px solid #ccc; */
-}
-
-.pCurrent {
-  font-weight:bold;
-}
-
-.pNotify {
-  font-size:13px;
-  position: absolute;
-  left:120px;
-  top:50px;
-}
-
-.pCheck {
-  font-size:14px;
-  position: absolute;
-  left:120px;
-  top:80px;
-}
-
-.pRemove {
-  position: absolute;
-  right:30px;
-  top: 60px;
-}
-
 .nav {
   position: absolute;
   bottom: 0;
@@ -198,6 +66,18 @@ a:not(.active) {
   padding-top: 1rem;
 }
 
+/* add-product page */
+#loading {
+  width: 8.5rem;
+  height: 8.5rem;
+  margin-top: 5rem;
+}
+
+#invalidMessage {
+  display: none;
+  text-align: center;
+}
+
 .add-product {
   word-wrap: break-word;
   font-size: 13px;
@@ -206,6 +86,141 @@ a:not(.active) {
   display: block;
 }
 
+#productName {
+  font-size:1.1rem;
+  color: #4f6b8f;
+  position: absolute;
+  left: 230px;
+  width: 12rem;
+  height: 6rem;
+  /* padding: 5px; */
+  border: none;
+  resize: none;
+}
+
+#productName:hover {
+  border: 1px solid #000000
+}
+
+#productImage {
+  position: absolute;
+  top: 65px;
+  border: 2px solid #ccc;
+}
+
+label[for=notifyPrice] {
+  font-size:16px;
+  position:absolute;
+  bottom: 160px;
+}
+
+#notifyPrice {
+  font-size:16px;
+  width:100px;
+  position:absolute;
+  bottom: 135px;
+}
+
+#addProductButton {
+  position:absolute;
+  bottom:4rem;
+}
+
+/* watchlist page */
+#secondaryContainer {
+  position:relative;
+  width:100%;
+  height:375px;
+  overflow: auto;
+  /* border:1px solid red; */
+}
+
+.containerItem {
+  position: relative;
+  width:100%;
+  height:120px;
+  overflow:hidden;
+  /* border:1px solid blue; */
+}
+
+.containerItem:hover {
+  /* background-color:#f8dfe1!important; */
+  font-weight:bold;
+}
+
+.containerItem:hover .pImage {
+  transform: scale(1.1);
+}
+
+.pURL:nth-child(even) .containerItem {
+  background-color:#efeeee;
+}
+
+.pName {
+  font-size:14px;
+  color: #4f6b8f;
+  position: absolute;
+  left:120px;
+}
+
+.pDomain {
+  font-size:12px;
+  font-style: italic;
+  position: absolute;
+  left:120px;
+  top:75px;
+}
+
+.pURL {
+  color:inherit!important;
+}
+
+.pImage {
+  position: absolute;
+  left:10px;
+  top:10px;
+  width:100px;
+  height:100px;
+  /* border: 2px solid #ccc; */
+}
+
+.pCurrent {
+  font-weight:bold;
+}
+
+.pNotify {
+  font-size:13px;
+  position: absolute;
+  left:120px;
+  top:50px;
+}
+
+.pCheck {
+  font-size:14px;
+  position: absolute;
+  left:120px;
+  top:80px;
+}
+
+.pRemove {
+  position: absolute;
+  right:30px;
+  top: 60px;
+}
+
+/* supported-stores page  */
+.storeContainer {
+  position: relative;
+  width:100%;
+  height:60px;
+  overflow:hidden;
+}
+
+.storeName {
+  text-align:center;
+}
+
+/* email pages */
 .current_email.form-group {
   text-align: center;
   padding-bottom: 100px;

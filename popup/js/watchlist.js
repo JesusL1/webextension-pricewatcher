@@ -1,4 +1,4 @@
-var watchlistDiv = document.getElementById("watchProductContainer")
+var watchlistDiv = document.getElementsByClassName("secondaryContainer")[0]
 
 browser.storage.sync.get().then((watchlist => {
     for (var key in watchlist) { 
@@ -8,8 +8,8 @@ browser.storage.sync.get().then((watchlist => {
       link.classList.add("pURL")
       link.href = key
 
-      var watchProduct = document.createElement("div")
-      watchProduct.classList.add("watchProduct")
+      var containerItem = document.createElement("div")
+      containerItem.classList.add("containerItem")
 
       var pName = document.createElement("p")
       pName.classList.add("pName")
@@ -42,13 +42,13 @@ browser.storage.sync.get().then((watchlist => {
       removeInput.value="Remove"
       removeForm.id = key
 
-      watchProduct.append(pName)
-      watchProduct.append(pNotify)
-      watchProduct.append(pWebsite)
-      watchProduct.append(pImage)
+      containerItem.append(pName)
+      containerItem.append(pNotify)
+      containerItem.append(pWebsite)
+      containerItem.append(pImage)
       removeForm.appendChild(removeInput)
-      watchProduct.append(removeForm)
-      link.appendChild(watchProduct)
+      containerItem.append(removeForm)
+      link.appendChild(containerItem)
       watchlistDiv.append(link)
     }
   }))

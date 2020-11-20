@@ -1,4 +1,4 @@
-const websites = {"93brand.com":"Scrape_93Brand", "bananarepublic.gap.com":"Scrape_Bananarepublic", "www.microcenter.com":"Scrape_Microcenter"}
+const supportedWebsites = {"93brand.com":"Scrape_93Brand", "bananarepublic.gap.com":"Scrape_Bananarepublic", "www.microcenter.com":"Scrape_Microcenter"}
 var productDict = {"productPrice": null, "productImage": null}
 
 async function Scrape_93Brand(url) {
@@ -29,14 +29,11 @@ async function Scrape_Microcenter(url) {
     return productDict
 }
 
-
-
 browser.runtime.onMessage.addListener(async function(request, sender, sendResponse) {
   let taburl = new URL(request.greeting)
-
-  if (taburl.hostname in websites) {
+  if (taburl.hostname in supportedWebsites) {
     console.log("website supported.")
-    var scrape_function = websites[taburl.hostname] // get the function of the current website from dict
+    var scrape_function = supportedWebsites[taburl.hostname] // get the function of the current website from dict
     productDict = await this[scrape_function](taburl.href) // call the function
     price = productDict["productPrice"]
     price = parseFloat(price.replace(/[^\d\.\-]/g, "")) // remove commas from prices
@@ -50,6 +47,7 @@ browser.runtime.onMessage.addListener(async function(request, sender, sendRespon
 
 
 //browser.storage.sync.clear()
+//localStorage.clear()
 
 // const periodInMinutes = 0.3;
 
@@ -64,7 +62,7 @@ browser.alarms.onAlarm.addListener((alarm) => {
     for (var key in watchlist) { 
       let product = watchlist[key]
       let product_url = new URL(key)
-      let scrape_function = websites[product_url.hostname] // get the function of the current website from dict
+      let scrape_function = supportedWebsites[product_url.hostname] // get the function of the current website from dict
       product_price = await this[scrape_function](product_url.href) // call the function
 
       if (product_price <= product.notifyPrice) {
@@ -116,3 +114,11 @@ function loadDoc(url) {
     })
     .catch(console.error)
 }
+
+function storeList() {
+  for (let key in supportedWebsites) {
+    //console.log(key)
+    localStorage.setItem(key, 'store')
+  } 
+}
+storeList()
