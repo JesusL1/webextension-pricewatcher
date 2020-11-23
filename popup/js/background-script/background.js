@@ -13,9 +13,11 @@ async function Scrape_93Brand(url) {
 async function Scrape_Bananarepublic(url) {
   var doc = await loadDoc(url)
   let productPrice = doc.getElementsByClassName("pdp-pricing__selected")[0].innerText.substring(1)
-  console.log(productPrice)
   productDict["productPrice"] = productPrice
-  productImage = doc.getElementsByClassName("hover-zoom")[0].href.replace("moz-extension://a2752f62-c2d4-455c-a886-09f24cbad882", "https://bananarepublic.gap.com") // need to replace moz-extension with https in url
+  var https = "https://bananarepublic.gap.com/"
+  productImage = doc.getElementsByClassName("hover-zoom")[0].href
+  let index = productImage.indexOf("webcontent")
+  productImage =  https + productImage.slice(index)
   productDict["productImage"] = productImage
   return productDict
 }
@@ -45,29 +47,26 @@ browser.runtime.onMessage.addListener(async function(request, sender, sendRespon
   return ({productInfo: {"price": price, "image": image, "url":taburl.href, "domain":taburl.host}})      
 });
 
-
 //browser.storage.sync.clear()
 //localStorage.clear()
 
-// const periodInMinutes = 0.3;
-
-// browser.alarms.create({
-//   periodInMinutes
-// });
-
+const periodInMinutes = 720; // fire alarm every 6 hours
+browser.alarms.create({
+  periodInMinutes
+});
 
 browser.alarms.onAlarm.addListener((alarm) => {
   console.log("Alarm has started...")
   browser.storage.sync.get().then((async watchlist => {
-    for (var key in watchlist) { 
-      let product = watchlist[key]
-      let product_url = new URL(key)
-      let scrape_function = supportedWebsites[product_url.hostname] // get the function of the current website from dict
-      product_price = await this[scrape_function](product_url.href) // call the function
-
-      if (product_price <= product.notifyPrice) {
+    for (var productURL in watchlist) { 
+      let product = watchlist[productURL]
+      let scrape_function = supportedWebsites[product.domain] // get the function of the current website from dict
+      productDict = await this[scrape_function](productURL) // call the function
+      // update the current price of the product
+      browser.storage.sync.set({[productURL]: {currentPrice:productDict.productPrice, domain:product.domain, image:product.image, name:product.name, notifyPrice:product.notifyPrice }})
+      if (productDict.productPrice <= product.notifyPrice) {
         console.log("There's a discount!")
-        SendEmail(product.name, product_price, product_url, product_price)
+        SendEmail(product.name, product.currentPrice, productURL, product.notifyPrice)
       }
     }
   }))
@@ -79,10 +78,10 @@ function SendEmail(product_name, product_price, product_url, sale_price) {
     template_id: config.template_id,
     user_id: config.user_id,
     template_params: {
-        'to_email': localStorage.get('userEmail'),
+        'to_email': localStorage.getItem('userEmail'),
         'product_name' : product_name,
         'product_price' : product_price,
-        'product_url' : product_url.href,
+        'product_url' : product_url,
         'sale_price' : sale_price
     }
   };
