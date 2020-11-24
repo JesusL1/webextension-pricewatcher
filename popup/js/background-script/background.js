@@ -1,4 +1,4 @@
-const supportedWebsites = {"93brand.com":"Scrape_93Brand", "bananarepublic.gap.com":"Scrape_Bananarepublic", "www.microcenter.com":"Scrape_Microcenter"}
+const supportedWebsites = {"93brand.com":"Scrape_93Brand", "www.amazon.com": "Scrape_Amazon", "bananarepublic.gap.com":"Scrape_Bananarepublic", "www.microcenter.com":"Scrape_Microcenter"}
 var productDict = {"productPrice": null, "productImage": null}
 
 async function Scrape_93Brand(url) {
@@ -6,6 +6,15 @@ async function Scrape_93Brand(url) {
   let productPrice = doc.getElementById("ProductPrice-product-template").innerText.substring(1)
   productDict["productPrice"] = productPrice
   productImage = doc.getElementsByTagName("img")[2].src.replace("moz-extension", "https") // need to replace moz-extension with https in url
+  productDict["productImage"] = productImage
+  return productDict
+}
+
+async function Scrape_Amazon(url) {
+  var doc = await loadDoc(url)
+  let productPrice = doc.getElementById("priceblock_ourprice").innerText.substring(1)
+  productDict["productPrice"] = productPrice
+  productImage = doc.getElementById("landingImage").src
   productDict["productImage"] = productImage
   return productDict
 }
