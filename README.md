@@ -11,9 +11,8 @@ Currently the following websites are supported:
 
 ## Installation
 1. Download the extension's [xpi file](/pricewatcher-1.0-fx.xpi).
-
 2. Drag the file onto an open Firefox window <strong>OR</strong> 
-   Visit <a href="about:addons" title="about:addons">about:addons</a> > click on gear icon > Install add-on from file > select .xpi file
+   Visit [about:addons](about:addons) > click on gear icon > Install add-on from file > select .xpi file
 
 ## Usage
 1. Visit a product page from one of the following supported websites.
