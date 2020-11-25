@@ -3,7 +3,7 @@
 
 PriceWatcher is a Firefox web browser extension that allows users to easily add a product to a watchlist with the click of a button and receive an email notification when the product's price is discounted. 
 
-Currently the following websites that are supported are: 
+Currently the following websites are supported: 
 * [93Brand](https://93brand.com/)
 * [Amazon](https://amazon.com/)
 * [Banana Republic](https://bananarepublic.gap.com/)
@@ -13,7 +13,7 @@ Currently the following websites that are supported are:
 1. Download the extension's [xpi file](/pricewatcher-1.0-fx.xpi).
 
 2. Drag the file onto an open Firefox window <strong>OR</strong> 
-   Visit [about:addons](about:addons) > click on gear icon > Install add-on from file > select .xpi file
+   Visit <a href="about:addons" title="about:addons">about:addons</a> > click on gear icon > Install add-on from file > select .xpi file
 
 ## Usage
 1. Visit a product page from one of the following supported websites.
