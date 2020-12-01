@@ -12,7 +12,13 @@ async function Scrape_93Brand(url) {
 
 async function Scrape_Amazon(url) {
   var doc = await loadDoc(url)
-  let productPrice = doc.getElementById("priceblock_ourprice").innerText.substring(1)
+  let productPrice = doc.getElementById("priceblock_dealprice")
+  if (productPrice === null)  {
+    productPrice = doc.getElementById("priceblock_ourprice").innerText.substring(1)
+  }
+  else {
+    productPrice = doc.getElementById("priceblock_dealprice").innerText.substring(1)
+  }
   productDict["productPrice"] = productPrice
   productImage = doc.getElementById("landingImage").src
   productDict["productImage"] = productImage
@@ -59,7 +65,7 @@ browser.runtime.onMessage.addListener(async function(request, sender, sendRespon
 //browser.storage.sync.clear()
 //localStorage.clear()
 
-const periodInMinutes = 720; // fire alarm every 6 hours
+const periodInMinutes = 60; // fire alarm every hour
 browser.alarms.create({
   periodInMinutes
 });
