@@ -20,8 +20,8 @@ async function Scrape_Amazon(url) {
     productPrice = doc.getElementById("priceblock_dealprice").innerText.substring(1)
   }
   productDict["productPrice"] = productPrice
-  productImage = doc.getElementById("landingImage").src
-  productDict["productImage"] = productImage
+  productImage = JSON.parse(doc.getElementById("landingImage").dataset.aDynamicImage)
+  productDict["productImage"] = Object.keys(productImage)[0]
   return productDict
 }
 

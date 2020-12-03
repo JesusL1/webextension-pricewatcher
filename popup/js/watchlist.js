@@ -53,7 +53,12 @@ browser.storage.sync.get().then((watchlist => {
     }
   }))
 
-  function RemoveProduct() {
-    console.log('Removing:', this.id)
-    browser.storage.sync.remove(this.id)
-  }
+function RemoveProduct() {
+  console.log('Removing:', this.id)
+  browser.storage.sync.remove(this.id)
+}
+
+// var gettingItem = browser.storage.sync.getBytesInUse();
+//     gettingItem.then((res) => {
+//     console.log(res);
+// });
