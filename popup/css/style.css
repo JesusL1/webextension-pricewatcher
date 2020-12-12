@@ -32,7 +32,7 @@ a:not(.active) {
 }
 
 .header {
-  position: relative;
+  position: fixed;
   width: 100%;
   height: 50px;
   text-align: center;
@@ -74,6 +74,12 @@ a:not(.active) {
 }
 
 #invalidMessage {
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  top:100px;
+  left: 0;
+  right: 0;
   display: none;
   text-align: center;
 }
@@ -90,6 +96,7 @@ a:not(.active) {
   font-size:1.1rem;
   color: #4f6b8f;
   position: absolute;
+  top:70px;
   left: 230px;
   width: 12rem;
   height: 6rem;
@@ -127,10 +134,16 @@ label[for=notifyPrice] {
 }
 
 /* watchlist page */
-#secondaryContainer {
+.container.watchlist {
   position:relative;
+}
+
+.secondaryContainer.watchlist {
+  position:absolute;
+  left:0;
+  top:52px;
   width:100%;
-  height:375px;
+  height:405px;
   overflow: auto;
   /* border:1px solid red; */
 }
@@ -209,6 +222,11 @@ label[for=notifyPrice] {
 }
 
 /* supported-stores page  */
+.container.supported-stores {
+  position:absolute;
+  top:100px;
+}
+
 .storeContainer {
   position: relative;
   width:100%;
@@ -221,6 +239,11 @@ label[for=notifyPrice] {
 }
 
 /* email pages */
+.container.update-email {
+  position:absolute;
+  top:50px;
+}
+
 .current_email.form-group {
   text-align: center;
   padding-bottom: 100px;
